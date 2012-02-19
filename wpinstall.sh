@@ -29,21 +29,34 @@
 script_folder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 tmp_folder="${script_folder}/tmp/"
 
-# Edit These Lines
-mysql_root_user="" # Used to create the user and database.
-mysql_root_pass="" # This is why I suggest keeping it local dev servers. 
+###
+# SET THE FOLLOWING ENVIRONMENT VARIABLES EITHER BEFORE EXECUTING 
+# OR IN YOUR PROFILE.
+##########
+# MYSQL_ROOT        - Your root mysql username. Usually is "root".
+# MYSQL_PASS        - Your root mysql password.
+# WP_DOC_ROOT       - Where to install WordPress to
+# WP_SERVER_ROOT    - Location of your server's root directory either your 
+#                     nginx install or /private/etc/apache2
+##
+
+
+# Edit These Lines if you need to
+
+mysql_root_user=${MYSQL_ROOT} # Used to create the user and database.
+mysql_root_pass=${MYSQL_PASS} # This is why I suggest keeping it local dev servers. 
 
 if [ ! ${mysql_root_user} ]; then
-    echo "You need to set the mysql_root_user in this script's settings."
+    echo "You need to set the MYSQL_USER env variable to your root mysql user."
     exit 0
 fi;
 if [ ! ${mysql_root_pass} ]; then
-    echo "You need to set the mysql_root_user in this script's settings."
+    echo "You need to set the MYSQL_PASS env variable to your root mysql pass."
     exit 0
 fi;
 
-sites_folder="${HOME}/Projects/nginx/Clients/" # Where to move the wordpress installation to
-server_folder="${HOME}/nginx/" # Location of Server folder that may contain sites-available and sites-enabled.
+sites_folder=${WP_DOC_ROOT} # Where to move the wordpress installation to
+server_folder=${WP_SERVER_ROOT} # Location of Server folder that may contain sites-available and sites-enabled.
 current_folder="${HOME}/Projects/Current/" # The current folder for current projects.
 
 vhost_folder="${server_folder}sites-available/"
