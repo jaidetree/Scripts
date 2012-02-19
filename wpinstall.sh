@@ -43,7 +43,7 @@ tmp_folder="${script_folder}/tmp/"
 
 # Edit These Lines if you need to
 
-mysql_root_user=${MYSQL_ROOT} # Used to create the user and database.
+mysql_root_user=${MYSQL_USER} # Used to create the user and database.
 mysql_root_pass=${MYSQL_PASS} # This is why I suggest keeping it local dev servers. 
 
 if [ ! ${mysql_root_user} ]; then
